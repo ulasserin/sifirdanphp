@@ -28,8 +28,8 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <?php 
-
-                         echo $dbh->query("SELECT `baslik` FROM `blog` WHERE `id` = 8")->fetchColumn();
+                        /*
+                         $dbh->query("SELECT `baslik` FROM `blog` WHERE `id` = 8")->fetchColumn();
                          $kelime = @$_GET['q'];
 
                          $kelime_query = ( strlen($kelime) > 1 ? "%$kelime%" : '');
@@ -38,8 +38,24 @@
                          $sql = "SELECT * FROM `blog` WHERE `aktif` = ? $search_query";
                          $query = $dbh->prepare($sql);
                          $query->execute([1, $kelime_query]);
-
+                         */
+                        $kelime = @$_GET['q'];
+                        if(!$kelime){
+                            $sql = "SELECT * FROM blog";
+                            $query = $dbh->prepare($sql);
+                            $query->execute();
+                            
+                        }
+                        else{
+                            $sql2 = "SELECT * FROM blog WHERE baslik LIKE :keywords";
+                            $query = $dbh->prepare($sql2);
+                            $query->bindValue('keywords', '%' . $kelime . '%');
+                            $query->execute();
+                        }
+                        
                         while( $veri = $query->fetch() ):
+
+                        
                     ?>
                     <!-- Post preview-->
                     <div class="post-preview">

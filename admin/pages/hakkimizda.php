@@ -1,6 +1,5 @@
 <?php 
     require_once 'function.php';
-    session_start();
     if($_SESSION['girisKontrol'] == 1) {
 
     }

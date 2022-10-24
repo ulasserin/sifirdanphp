@@ -1,27 +1,17 @@
 <?php
  session_start();
-
-/* Sürücü isteğiyle bir MySQL veritabanına bağlanalım */
-$dsn = 'mysql:dbname=udemy;host=localhost';
-$user = 'root';
-$password = '';
-
-$dbh = new PDO($dsn, $user, $password);
-
-
-
-$servername      = '';
-$database        = '';
-$username        = '';
+$servername      = 'localhost';
+$database        = 'udemy';
+$username        = 'root';
 $password        = '';
 //!PDO CONNECTION 
 
 try {
 
 	try {
-		$conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
-		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$conn->query("SET NAMES utf8");
+		$dbh = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
+		$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$dbh->query("SET NAMES utf8");
 
 	} catch (PDOException $e) {
 		echo "Connection failed: " . $e->getMessage();
