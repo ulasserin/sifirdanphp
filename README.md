@@ -1,2 +1,2 @@
-# sifirdanphp
-ilk blog projesi denemesi
+admin panel giriş:
+admin | 123
